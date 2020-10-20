@@ -4,14 +4,14 @@ This bot has been created using [Bot Framework](https://dev.botframework.com)
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org) version 10.14 or higher
+- [Node.js](https://nodejs.org) version 12 or higher
     ```bash
     # determine node version
     node --version
     ```
 # To run the bot locally
-- Download the bot code from the Build blade in the Azure Portal (make sure you click "Yes" when asked "Include app settings in the downloaded zip file?").
-    - If you clicked "No" you will need to copy all the Application Settings properties from your App Service to your local .env file.
+- 
+- Copy `sample.env` to `.env` and add your key values
 - Install modules
 
     ```bash
@@ -28,7 +28,7 @@ This bot has been created using [Bot Framework](https://dev.botframework.com)
 
 [Bot Framework Emulator](https://github.com/microsoft/botframework-emulator) is a desktop application that allows bot developers to test and debug their bots on localhost or running remotely through a tunnel.
 
-- Install the Bot Framework Emulator version 4.9.0 or greater from [here](https://github.com/Microsoft/BotFramework-Emulator/releases)
+- Install the Bot Framework Emulator from [here](https://github.com/Microsoft/BotFramework-Emulator/releases)
 
 ### Connect to the bot using Bot Framework Emulator
 
@@ -38,7 +38,7 @@ This bot has been created using [Bot Framework](https://dev.botframework.com)
 
 ## Deploy the bot to Azure
 
-To learn more about deploying a bot to Azure, see [Deploy your bot to Azure](https://aka.ms/azuredeployment) for a complete list of deployment instructions.
+- Deployment is automated using Github Actions. Edit the `.github/workflows` workflow file to point to your App Service instance.
 
 ## Further reading
 
