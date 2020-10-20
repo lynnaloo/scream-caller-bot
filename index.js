@@ -24,6 +24,7 @@ server.listen(process.env.port || process.env.PORT || 3978, () => {
   console.log('\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator');
   console.log('\nTo talk to your bot, open the emulator select "Open Bot"');
 });
+server.get(/.*/, restify.serveStatic({directory: '.', default: 'index.html'}));
 
 const adapter = new BotFrameworkAdapter({
   appId: process.env.MicrosoftAppId,
