@@ -8,6 +8,7 @@ const {ApplicationInsightsTelemetryClient, TelemetryInitializerMiddleware} = req
 const {TelemetryLoggerMiddleware} = require('botbuilder-core');
 const restify = require('restify');
 const {BotFrameworkAdapter, NullTelemetryClient} = require('botbuilder');
+const appInsights = require('applicationinsights');
 
 const ENV_FILE = path.join(__dirname, '.env');
 dotenv.config({path: ENV_FILE});
@@ -62,6 +63,18 @@ const telemetryClient = getTelemetryClient(process.env.APPINSIGHTS_INSTRUMENTATI
 const telemetryLoggerMiddleware = new TelemetryLoggerMiddleware(telemetryClient);
 const initializerMiddleware = new TelemetryInitializerMiddleware(telemetryLoggerMiddleware);
 adapter.use(initializerMiddleware);
+
+appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
+  .setAutoDependencyCorrelation(true)
+  .setAutoCollectRequests(true)
+  .setAutoCollectPerformance(true, true)
+  .setAutoCollectExceptions(true)
+  .setAutoCollectDependencies(true)
+  .setAutoCollectConsole(true)
+  .setUseDiskRetryCaching(true)
+  .setSendLiveMetrics(false)
+  .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
+  .start();
 
 // Create the main dialog
 const screamBot = new ScreamBot(configuration, {telemetryClient});
