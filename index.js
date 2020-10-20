@@ -58,7 +58,7 @@ const onTurnErrorHandler = async (context, error) => {
 adapter.onTurnError = onTurnErrorHandler;
 
 // Add telemetry middleware to the adapter middleware pipeline
-const telemetryClient = getTelemetryClient(process.env.InstrumentationKey);
+const telemetryClient = getTelemetryClient(process.env.APPINSIGHTS_INSTRUMENTATIONKEY);
 const telemetryLoggerMiddleware = new TelemetryLoggerMiddleware(telemetryClient);
 const initializerMiddleware = new TelemetryInitializerMiddleware(telemetryLoggerMiddleware);
 adapter.use(initializerMiddleware);
