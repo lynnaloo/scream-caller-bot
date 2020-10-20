@@ -4,9 +4,10 @@
 const path = require('path');
 
 const dotenv = require('dotenv');
-const appInsights = require('applicationinsights');
+const {ApplicationInsightsTelemetryClient, TelemetryInitializerMiddleware} = require('botbuilder-applicationinsights');
+const {TelemetryLoggerMiddleware} = require('botbuilder-core');
 const restify = require('restify');
-const {BotFrameworkAdapter} = require('botbuilder');
+const {BotFrameworkAdapter, NullTelemetryClient} = require('botbuilder');
 
 const ENV_FILE = path.join(__dirname, '.env');
 dotenv.config({path: ENV_FILE});
@@ -16,19 +17,8 @@ const {ScreamBot} = require('./bot');
 
 // Create HTTP server
 const server = restify.createServer();
+server.use(restify.plugins.bodyParser());
 server.listen(process.env.port || process.env.PORT || 3978, () => {
-  appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
-    .setAutoDependencyCorrelation(true)
-    .setAutoCollectRequests(true)
-    .setAutoCollectPerformance(true, true)
-    .setAutoCollectExceptions(true)
-    .setAutoCollectDependencies(true)
-    .setAutoCollectConsole(true)
-    .setUseDiskRetryCaching(true)
-    .setSendLiveMetrics(false)
-    .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
-    .start();
-
   console.log(`\n${ server.name } listening to ${ server.url }`);
   console.log('\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator');
   console.log('\nTo talk to your bot, open the emulator select "Open Bot"');
@@ -52,13 +42,13 @@ const configuration = {
 const onTurnErrorHandler = async (context, error) => {
   console.error(`\n [onTurnError] unhandled error: ${ error }`);
 
-    // Send a trace activity, which will be displayed in Bot Framework Emulator
+  // Send a trace activity, which will be displayed in Bot Framework Emulator
   await context.sendTraceActivity(
-        'OnTurnError Trace',
-        `${ error }`,
-        'https://www.botframework.com/schemas/error',
-        'TurnError'
-    );
+    'OnTurnError Trace',
+    `${ error }`,
+    'https://www.botframework.com/schemas/error',
+    'TurnError'
+  );
 
     // Send a message to the user
   await context.sendActivity('The bot encountered an error or bug.');
@@ -67,8 +57,14 @@ const onTurnErrorHandler = async (context, error) => {
 // Set the onTurnError for the singleton BotFrameworkAdapter
 adapter.onTurnError = onTurnErrorHandler;
 
+// Add telemetry middleware to the adapter middleware pipeline
+const telemetryClient = getTelemetryClient(process.env.InstrumentationKey);
+const telemetryLoggerMiddleware = new TelemetryLoggerMiddleware(telemetryClient);
+const initializerMiddleware = new TelemetryInitializerMiddleware(telemetryLoggerMiddleware);
+adapter.use(initializerMiddleware);
+
 // Create the main dialog
-const screamBot = new ScreamBot(configuration, {});
+const screamBot = new ScreamBot(configuration, {telemetryClient});
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
@@ -90,3 +86,11 @@ server.on('upgrade', (req, socket, head) => {
     await screamBot.run(context);
   });
 });
+
+// Creates a new TelemetryClient based on a instrumentation key
+function getTelemetryClient(instrumentationKey) {
+  if (instrumentationKey) {
+    return new ApplicationInsightsTelemetryClient(instrumentationKey);
+  }
+  return new NullTelemetryClient();
+}
