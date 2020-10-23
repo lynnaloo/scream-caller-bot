@@ -1,4 +1,4 @@
-# Scream Movie Caller Bot
+# Scream Movie Caller Bot :jack_o_lantern: :ghost: :scream:
 
 This bot has been created using [Bot Framework](https://dev.botframework.com)
 
