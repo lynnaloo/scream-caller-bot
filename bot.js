@@ -4,8 +4,6 @@
 const {ActivityHandler, MessageFactory} = require('botbuilder');
 const {QnAMaker} = require('botbuilder-ai');
 
-const WELCOME = 'Hello.';
-
 class ScreamBot extends ActivityHandler {
   constructor(configuration, qnaOptions) {
     super();
@@ -28,7 +26,7 @@ class ScreamBot extends ActivityHandler {
 
     this.onMembersAdded(async (context, next) => {
       const membersAdded = context.activity.membersAdded;
-      const welcomeText = WELCOME;
+      const welcomeText = configuration.WelcomeText || 'Hello.';
       for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
         if (membersAdded[cnt].id !== context.activity.recipient.id) {
           await context.sendActivity(MessageFactory.text(welcomeText, welcomeText));

@@ -36,7 +36,8 @@ const adapter = new BotFrameworkAdapter({
 const configuration = {
   knowledgeBaseId: process.env.QnAKnowledgebaseId,
   endpointKey: process.env.QnAAuthKey,
-  host: process.env.QnAEndpointHostName
+  host: process.env.QnAEndpointHostName,
+  welcome: process.env.WelcomeText
 };
 
 // Catch-all for errors.
