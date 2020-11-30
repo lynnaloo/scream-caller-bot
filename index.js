@@ -37,7 +37,8 @@ const configuration = {
   knowledgeBaseId: process.env.QnAKnowledgebaseId,
   endpointKey: process.env.QnAAuthKey,
   host: process.env.QnAEndpointHostName,
-  welcomeText: process.env.WelcomeText
+  welcomeText: process.env.WelcomeText,
+  unknownText: process.env.UnknownText
 };
 
 // Catch-all for errors.

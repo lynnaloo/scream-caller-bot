@@ -19,7 +19,7 @@ class ScreamBot extends ActivityHandler {
         await context.sendActivity(qnaResults[0].answer);
       } else {
         // If no answers were returned from QnA Maker, reply with blanket response.
-        await context.sendActivity('What\'s that noise?');
+        await context.sendActivity(configuration.unknownText || 'What\'s that noise?');
       }
       await next();
     });
