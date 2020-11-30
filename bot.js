@@ -26,7 +26,7 @@ class ScreamBot extends ActivityHandler {
 
     this.onMembersAdded(async (context, next) => {
       const membersAdded = context.activity.membersAdded;
-      const welcomeText = configuration.WelcomeText || 'Hello.';
+      const welcomeText = configuration.welcomeText || 'Hello.';
       for (let cnt = 0; cnt < membersAdded.length; ++cnt) {
         if (membersAdded[cnt].id !== context.activity.recipient.id) {
           await context.sendActivity(MessageFactory.text(welcomeText, welcomeText));
