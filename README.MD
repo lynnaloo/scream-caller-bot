@@ -10,7 +10,6 @@ This bot has been created using [Bot Framework](https://dev.botframework.com)
     node --version
     ```
 # To run the bot locally
-- 
 - Copy `sample.env` to `.env` and add your key values
 - Install modules
 
