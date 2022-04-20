@@ -16,13 +16,13 @@
         "url": "https://github.com/lynnaloo/scream-caller-bot"
     },
     "dependencies": {
-        "applicationinsights": "^1.8.7",
-        "botbuilder": "~4.10.3",
-        "botbuilder-ai": "^4.10.4",
-        "botbuilder-applicationinsights": "^4.10.4",
-        "botbuilder-core": "^4.10.4",
-        "dotenv": "^8.2.0",
-        "restify": "~8.5.1"
+        "applicationinsights": "^2.3.1",
+        "botbuilder": "~4.16.0",
+        "botbuilder-ai": "^4.16.0",
+        "botbuilder-applicationinsights": "^4.16.0",
+        "botbuilder-core": "^4.16.0",
+        "dotenv": "^16.0.0",
+        "restify": "~8.6.1"
     },
     "devDependencies": {
         "eslint": "^7.0.0",
