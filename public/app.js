@@ -4,7 +4,7 @@ const input = document.getElementById("input");
 const sendBtn = document.getElementById("send");
 const resetBtn = document.getElementById("reset");
 
-const OPENING_LINE = "Hello… Do you like scary movies?";
+const OPENING_LINE = "Hello?";
 
 const GHOST_AVATAR = `<img src="/caller.png" alt="Ghostface" />`;
 
