@@ -1,37 +1,25 @@
 {
-    "name": "scream-caller-bot",
-    "version": "1.0.0",
-    "description": "A bot to automate the Scream movie caller",
-    "author": "Linda Nichols <lynnaloo@gmail.com>",
-    "license": "MIT",
-    "main": "index.js",
-    "scripts": {
-        "start": "node ./index.js",
-        "watch": "nodemon ./index.js",
-        "lint": "eslint .",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/lynnaloo/scream-caller-bot"
-    },
-    "dependencies": {
-        "applicationinsights": "^2.3.1",
-        "botbuilder": "~4.16.0",
-        "botbuilder-ai": "^4.16.0",
-        "botbuilder-applicationinsights": "^4.16.0",
-        "botbuilder-core": "^4.16.0",
-        "dotenv": "^16.0.0",
-        "restify": "~8.6.1"
-    },
-    "devDependencies": {
-        "eslint": "^7.0.0",
-        "eslint-config-standard": "^14.1.1",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-promise": "^4.2.1",
-        "eslint-plugin-shopify": "^35.1.0",
-        "eslint-plugin-standard": "^4.0.1",
-        "nodemon": "~2.0.4"
-    }
+  "name": "scream-caller-bot",
+  "version": "2.0.0",
+  "description": "A creepy Halloween chat bot that talks like the Ghostface caller from Scream, powered by a small Claude model.",
+  "author": "Linda Nichols <lynnaloo@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lynnaloo/scream-caller-bot"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.65.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
 }

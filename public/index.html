@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Do You Like Scary Movies?</title>
+    <meta
+      name="description"
+      content="A creepy Halloween chat bot that answers like the caller from Scream."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" type="image/png" href="/caller.png" />
+  </head>
+  <body>
+    <div class="vignette"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="/caller.png" alt="Ghostface" width="42" height="42" />
+        </span>
+        <span class="brand-text">Ghost<span>face</span></span>
+      </div>
+      <button id="reset" class="reset" type="button" title="Hang up and start over">
+        ✕ hang up
+      </button>
+    </header>
+
+    <main class="phone">
+      <div id="log" class="log" aria-live="polite" aria-label="Conversation"></div>
+
+      <form id="composer" class="composer" autocomplete="off">
+        <input
+          id="input"
+          class="input"
+          type="text"
+          maxlength="800"
+          placeholder="Answer the phone…"
+          aria-label="Your message"
+        />
+        <button id="send" class="send" type="submit" aria-label="Send">
+          Answer
+        </button>
+      </form>
+      <p class="disclaimer">
+        A Halloween toy. It's a character from a movie — not real, and just for fun. 🎃
+      </p>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
