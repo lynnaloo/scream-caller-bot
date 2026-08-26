@@ -25,8 +25,14 @@ Pick up. Play his game. Try not to say "who's there?" 🔪
 
 ## Going public
 
-He needs a backend to keep that API key secret, so he can't live on GitHub Pages. Any Node
-host works (Render, Railway, Fly) — set `ANTHROPIC_API_KEY`, set a spend limit, and maybe
-sleep with the lights on.
+He needs a backend to keep that API key secret, so he can't live on GitHub Pages. Easiest
+home is [Render](https://render.com) — a `render.yaml` blueprint is included, so just push to
+GitHub, hit **New + → Blueprint**, and paste your key into `ANTHROPIC_API_KEY`. (Free instances
+nap after ~15 min idle, so the first caller waits a beat while he picks up.)
+
+**Put him on a leash.** He's a public endpoint, so cap the damage before he runs up a bill:
+give him his own [Anthropic workspace](https://console.anthropic.com/) with a monthly spend
+limit, then use an API key *from that workspace*. Spend limits aren't per-model — a walled-off
+workspace is how you fence off just this bot. A few dollars a month is a *lot* of taunting.
 
 *It's a Halloween toy. He's a movie character. It's all just for fun.* 🎃

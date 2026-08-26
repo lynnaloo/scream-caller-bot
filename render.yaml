@@ -1,0 +1,16 @@
+# Render Blueprint — https://render.com
+# Deploy: push this repo to GitHub, then in Render click "New +" → "Blueprint"
+# and point it at the repo. Render reads this file and provisions the service.
+services:
+  - type: web
+    name: scream-caller-bot
+    runtime: node
+    plan: free # free instances sleep after ~15 min idle (first caller waits ~30-60s)
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      # Set this in the Render dashboard — never commit the real key.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      # Render provides PORT automatically; server.js already reads it.
