@@ -4,7 +4,7 @@ Do you like scary movies?
 
 A creepy little Halloween bot that answers like the Ghostface caller from *Scream*.
 **v2** ditches the old Azure + QnA Maker setup ([that story here](https://dev.to/lynnaloo/how-i-accidentally-created-a-creepy-halloween-bot-and-you-can-too-1ed7))
-and lets a small, cheap LLM (Claude Haiku) *become* Ghostface — so now he improvises the
+and lets a small, cheap LLM (Claude Haiku) *become* Ghostface, so now he improvises the
 taunts instead of reading from a script. v1 rests quietly in the git history where it belongs.
 
 ## Answer the phone
@@ -19,20 +19,20 @@ Pick up. Play his game. Try not to say "who's there?" 🔪
 
 ## The gory details
 
-- **`server.js`** — tiny Express backend. Holds your API key, streams his replies, *is* the persona (edit the `SYSTEM_PROMPT` to mess with him).
-- **`public/`** — the whole chat UI. No framework, no build step, no mercy.
-- **`*.tsv` + `*.png`** — the original v1 knowledge bases and mask art, kept around as the source of his voice (and for old times' sake).
+- **`server.js`**: tiny Express backend. Holds your API key, streams his replies, *is* the persona (edit the `SYSTEM_PROMPT` to mess with him).
+- **`public/`**: the whole chat UI. No framework, no build step, no mercy.
+- **`*.tsv` + `*.png`**: the original v1 knowledge bases and mask art, kept around as the source of his voice (and for old times' sake).
 
 ## Going public
 
 He needs a backend to keep that API key secret, so he can't live on GitHub Pages. Easiest
-home is [Render](https://render.com) — a `render.yaml` blueprint is included, so just push to
-GitHub, hit **New + → Blueprint**, and paste your key into `ANTHROPIC_API_KEY`. (Free instances
-nap after ~15 min idle, so the first caller waits a beat while he picks up.)
+home is [Render](https://render.com). A `render.yaml` blueprint is included, so just push to
+GitHub, hit **New +**, then **Blueprint**, and paste your key into `ANTHROPIC_API_KEY`. (Free
+instances nap after ~15 min idle, so the first caller waits a beat while he picks up.)
 
 **Put him on a leash.** He's a public endpoint, so cap the damage before he runs up a bill:
 give him his own [Anthropic workspace](https://console.anthropic.com/) with a monthly spend
-limit, then use an API key *from that workspace*. Spend limits aren't per-model — a walled-off
+limit, then use an API key *from that workspace*. Spend limits aren't per-model, so a walled-off
 workspace is how you fence off just this bot. A few dollars a month is a *lot* of taunting.
 
 *It's a Halloween toy. He's a movie character. It's all just for fun.* 🎃
